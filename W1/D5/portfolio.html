@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#home" class="logo">Kavyashree V</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Using Flexbox Layout & Hero section-->
+    <section id="home" class="hero">
+        <h1>Kavyashree V</h1>
+        <img src="myphoto.jpg" alt="My photo" class="profile-img" width="100px" height="100px">
+        <p>Software developer <br>MERN Stack|DevOps</p>
+        <a href="#contact" class="cta-button">Contact Me</a>
+    </section>
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <article class="about">
+            <h3>Full Stack Developer</h3>
+            <p>A highly motivated Computer Science engineering fresher looking for an opportunity to contribute to the dynamic technology team, while having hands-on experience in software development, emerging technologies, and real-world project implementation. Committed to continuous learning, delivering quality results.
+
+            </p>
+            <div class="tags">
+                <span class="tag">Backend: NodeJS</span>
+                <span class="tag">DB: Optimization</span>
+            </div>
+        </article>
+    </section>
+    <!-- Skills -->
+     <section id="skills">
+        <h3>Skills</h3>
+        <div class="skills-grid">
+            <div class="skills-card">
+                <h4>MERN Stack</h4>
+                <p>ReactJs, NodeJS,ExpressJs, MongoDB</p>
+            </div>
+        </div>
+     </section>
+     <!-- Projects -->
+      <section id="projects">
+        <h3>My Projects</h3>
+        <div class="project-container">
+            <div class="project-content">
+                <h4>Voice Controlled Car using AI</h4>
+                <p>An intelligent car system that uses AI-based voice recognition to control movement through spoken commands. It converts voice inputs into signals processed by a microcontroller, enabling hands-free navigation and improved accessibility.</p>
+                <a href="https://www.gola.com/" target="_blank">View</a>
+            </div>
+            <div class="project-content">
+                <h4>Enhancing Breast Cancer Detection through DenseNet based Deep Learning</h4>
+                <p>A deep learning project that leverages the DenseNet architecture to improve early breast cancer detection from medical imaging data. The model enhances feature extraction and classification accuracy, supporting faster and more reliable diagnosis.</p>
+                <a href="https://github.com/kavyashreev-official/Enhancing-Breast-Cancer-Detection-Through-DenseNet-Based-Deep-Learning" target="_blank">View</a>
+            </div>
+        </div>
+        <table>
+            <thead><tr>
+                <th>Project</th>
+                <th colspan="2">Technology</th>
+            </tr></thead>
+            <tbody>
+                <tr>
+                    <td>AWS hosting</td>
+                    <td>MERN</td>
+                    <td>Redis</td>
+                </tr>
+            </tbody>
+        </table>
+      </section>
+      <!--Contact me  -->
+      <section id="contact">
+        <h3>Contact Me</h3>
+        <form class="contact-form">
+            <fieldset>
+                <legend>Contact From</legend>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" name="" id="name" placeholder="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Email</label>
+                    <input type="email" name="" id="email" placeholder="email" required>
+                </div>
+                <div class="form-group">
+                    <select name="type">
+                        <option value="fte">FTE</option>
+                        <option value="consultant">consultant</option>
+                    </select>
+                </div>
+            </fieldset>
+            <button type="submit" class="submit-btn">Send</button>
+        </form>
+      </section>
+</body>
+</html>
