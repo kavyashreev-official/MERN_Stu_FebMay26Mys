@@ -7,5 +7,5 @@ startBtn.addEventListener("click",handleClick);
 
 removeBtn.addEventListener("click",function(){
     startBtn.removeEventListener("click",handleClick);
-    console.log("click listener removed fromm startBtn");
+    console.log("click listener removed from startBtn");
 });
