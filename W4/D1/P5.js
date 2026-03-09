@@ -21,3 +21,5 @@ function calculateTotal(prices){
 let cart=[100,250,150,1000,220];
 
 console.log("Total: ",calculateTotal(cart));
+
+console.log(document.body);
