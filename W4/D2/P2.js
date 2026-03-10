@@ -7,7 +7,7 @@ document.getElementById("addBtn").addEventListener("click",function(){
     const li=document.createElement("li");    
     li.textContent="Item " + counter++;
     list.appendChild(li);
-    errMessage.innerText="";
+    errMessage.textContent="";
     
 });
 document.getElementById("rmBtn").addEventListener("click",
