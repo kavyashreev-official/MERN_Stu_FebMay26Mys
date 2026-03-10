@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+</head>
+<body>
+    <form id="signupForm">
+        <label>Email: <input type="text" id="signupEmail"></label> <br><br>
+        <!-- can add 'required' in input tag  so the bowser act 1st -->
+         <!-- <input type="text" id="contactNumber" pattern="^[0-9]{10}$" placeholder="eg:9876543210"><br><br> -->
+         <!-- can add 'pattern' where 
+              ^=start of 
+              [0-9]=it should have 0-9 numbers
+              {10}=have 10 digits in it
+              $= end of the format -->
+        <label>Password: <input type="password" id="signupPassword"></label><br><br>
+        <button type="submit">Submit</button>
+    </form>
+    <p id="message"></p>
+    <script src="./P5.js"></script>
+</body>
+</html>
