@@ -15,11 +15,14 @@ document.getElementById("saveBtn").addEventListener("click",
 
 document.getElementById("readBtn").addEventListener("click",
     function(){
-    //    const user=localStorage.getItem("user");
-    //    jsonOutput.textContent="Data:"+user;
-    const up=localStorage.getItem("userProfile");
-    console.log(JSON.parse(up));
-    console.log(up);
-    jsonOutput.textContent="userProfile"+up;
+    try{
+        const up = localStorage.getItem("userProfile");
+        console.log(JSON.parse(up));
+        console.log(up);
+        jsonOutput.textContent = "userProfile" + up;
+    }
+    catch(error){
+        jsonOutput.textContent = "Failed";
+    }
     }
 );
