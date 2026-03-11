@@ -6,15 +6,15 @@ let tickets = [
   { id: "T104", priority: "HIGH", resolved: true },
   { id: "T105", priority: "MEDIUM", resolved: false }
 ];
-tickets.unshift({ id: "T100", priority: "HIGH", resolved: false }); //addes element at the beginning of array
-tickets.push(  // adds elements to the end
+tickets.unshift({ id: "T100", priority: "HIGH", resolved: false }); 
+tickets.push(  
   { id: "T106", priority: "LOW", resolved: false },
   { id: "T107", priority: "MEDIUM", resolved: false }
 );
-let currentTicket = tickets.shift(); //removes 1st element
-let droppedTicket = tickets.pop();   //removes last element
-let pending = tickets.filter(ticket => ticket.resolved === false);  //returns elements that match condition
-let pendingIds = pending.map(ticket => ticket.id);  //transforms each elements
+let currentTicket = tickets.shift(); 
+let droppedTicket = tickets.pop();   
+let pending = tickets.filter(ticket => ticket.resolved === false);  
+let pendingIds = pending.map(ticket => ticket.id); 
 console.log("Current Ticket:", currentTicket);
 console.log("Dropped Ticket:", droppedTicket);
 console.log("Pending Tickets:", pending);
