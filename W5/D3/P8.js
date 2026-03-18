@@ -1,5 +1,4 @@
 // try catch finally with async/await
-
 function processPayment(isSuccessded){
     return new Promise(function(resolve,reject){
         setTimeout(function(){
