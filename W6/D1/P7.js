@@ -1,6 +1,6 @@
 // Understanding path module and JSON module
 
-const path=require("path");
+const path = require("path");
 //JSON is loaded as a normal JS object in CommonJS
 const appConfig=require("./support/app-config.json");
 
