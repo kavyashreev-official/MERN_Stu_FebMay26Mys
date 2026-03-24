@@ -14,3 +14,5 @@ try{
 catch(error){
     console.log("Third-party module 'lodash' is not installed.");
 }
+
+//to install 'lodash' in cmd 'npm install lodash'
