@@ -1,4 +1,4 @@
-// Reading & writing file asynchronously with callbacks
+//Reading & writing file asynchronously with callbacks
 const fs=require("fs");
 const path=require("path");
 
