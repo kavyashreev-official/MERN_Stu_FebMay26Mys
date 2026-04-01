@@ -22,7 +22,7 @@ app.get("/search",function(req,res,next){
     });        
 });
 // Centralized error handling middleware
-app.use(function(req,res,next){
+app.use(function(error,req,res,next){
     res.status(Error.statusCode || 500).json({
         success:false,
         message:error.message,
