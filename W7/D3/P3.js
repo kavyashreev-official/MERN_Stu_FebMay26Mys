@@ -16,7 +16,7 @@ app.get("/async-fail",async function(req,res,next){
     }
 });
 // Centralized error handling middleware
-app.use(function(req,res,next){
+app.use(function(error,req,res,next){
     res.status(404).json({
         success:false,
         message:"Async/Await error handled centrally."
