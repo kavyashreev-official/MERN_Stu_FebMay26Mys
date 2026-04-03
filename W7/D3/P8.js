@@ -4,8 +4,8 @@ const jwt = require("jsonwebtoken");
 
 const app = express();
 app.use(express.json());
-const secertKey = "Mysecretkey";
-const refreshSecertKey = "MyNewsecretkey";
+const secretKey = "Mysecretkey";
+const refreshSecretKey = "MyNewsecretkey";
 
 // in-memory storage for refresh token
 const refreshTokens = [];
@@ -21,10 +21,10 @@ function authenticateAccessToken(req, res, next) {
         });
     }
     try {
-        req.user = jwt.verify(token.secertKey,{
-                algorithms: ["HS256"],
-                issuer: "jwt-example"
-            });
+        req.user = jwt.verify(token, secretKey, {
+            algorithms: ["HS256"],
+            issuer: "jwt-example"
+        });
         next();
     }
     catch (error) {
@@ -53,19 +53,19 @@ app.post("/login", function (req, res) {
         userId: 101,
         email: email,
         role: "member"
-    }, secertKey, {
+    }, secretKey, {
         expiresIn: "10m",
         algorithm: "HS256",
-        issuer: "jwt - exapmle"
+        issuer: "jwt-example"
     });
 
 
     const refreshToken = jwt.sign({
         userId: 101,
-        email: email
-    }, refreshSecertKey,
+        email: email    
+    }, refreshSecretKey,
         {
-            expiresIn:"10d",  // expiresIn:"10d",  d: days m:mins h:hours
+            expiresIn: "10d",  // expiresIn:"10d",  d: days m:mins h:hours
             algorithm: "HS256",
             issuer: "jwt-example"
         });
@@ -87,7 +87,7 @@ app.post("/refresh", function (req, res) {
         });
     }
     try {
-        const decoded = jwt.verify(refreshToken, refreshSecertKey,
+        const decoded = jwt.verify(refreshToken, refreshSecretKey,
             {
                 algorithms: ["HS256"],
                 issuer: "jwt-example"
@@ -97,11 +97,11 @@ app.post("/refresh", function (req, res) {
             userId: decoded.userId,
             email: decoded.email,
             role: "member"
-        }, secertKey,
+        }, secretKey,
             {
                 expiresIn: "15m",
                 algorithm: "HS256",
-                issuer: "jwt - exapmle"
+                issuer: "jwt-example"
             });
         res.json({
             success: true,
@@ -115,14 +115,19 @@ app.post("/refresh", function (req, res) {
         });
     }
 });
-app.get("/me",authenticateAccessToken,function(req,res){
+app.get("/me", authenticateAccessToken, function (req, res) {
     res.json({
-        success:true,
-        message:"Protected user route",
-        user:req.user
+        success: true,
+        message: "Protected user route",
+        user: req.user
     });
 });
 
-app.listen(4000,function(){
+app.listen(4000, function () {
     console.log("JWT demo server running at http://localhost:4000");
 });
+
+
+// to run
+// curl -X POST http://localhost:4000/login
+//    -H "Content-Type:application/json" -d "{\"email\":\"email@email.com\",\"password\":\"pass@123\"}"
