@@ -6,6 +6,7 @@ const chalk = require("chalk");
 const movies = require("./movies");
 // console.log(movies);
 const bookingEmitter = require("./events");
+
 const {
     validateMovieSelection,
     validateTimeSelection,
