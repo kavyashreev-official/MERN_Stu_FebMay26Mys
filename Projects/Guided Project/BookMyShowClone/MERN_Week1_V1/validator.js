@@ -19,7 +19,7 @@ function validateTimeSelection(movie,selectedTime,callback){
 }
 
 function validateSeatCount(seatCount,callback){
-    if(!isNaN(seatCount) || seatCount <= 0){
+    if(isNaN(seatCount) || seatCount <= 0){
         return callback("Invalid seat count. Enter a valid seat count.",null);
     }
     callback(null,seatCount);
