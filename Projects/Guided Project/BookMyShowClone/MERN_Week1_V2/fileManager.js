@@ -137,12 +137,11 @@ module.exports={
     listDataFilesSync,
     removeLogsDirectorySync,
     initializeBookingsFileSync,
-    readBookingsSync,
     readBookingsAsync,
+    readBookingsSync,
     writeBookingsAsync,
-    writeFileSync,
     appendBookingAsync,
     appendLogAsync,
     renameLogFileSync,
     deleteArchivedSync
-}
+};
