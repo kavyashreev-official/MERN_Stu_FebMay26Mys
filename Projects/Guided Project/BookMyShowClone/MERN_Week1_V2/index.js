@@ -17,7 +17,7 @@ const {
     processBookingAsync
 } = require("./booking");
 const {
-    cancelbooking
+    cancelBooking
 } = require("./cancel");
 
 const MAX_ATTEMPTS = 3;
@@ -99,13 +99,13 @@ function handleMenuChoice(choice) {
         case "1": displayMovies(); showMenu(); break;
         case "2": startBookingFlow(); break;
         case "3": viewCurrentBooking(); showMenu(); break;
-        case "4": cancelbooking(movies); showMenu(); break;
+        case "4": cancelBooking(movies); showMenu(); break;
         case "5": if (!getCurrentBooking()) {
             console.log(chalk.yellow("No booking available."));
             showMenu();
         }
         else {
-            cancelbooking(movies);
+            cancelBooking(movies);
             startBookingFlow();
         }
             break;
