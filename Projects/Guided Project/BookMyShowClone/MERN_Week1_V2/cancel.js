@@ -10,7 +10,7 @@ function cancelBooking(movies){
         bookingEmitter.emit("bookingFailed","No booking found to cancel.");
         return null;
     }
-    const Movie=movies.find((m)=>m.id===booking.movieId);
+    const movie=movies.find((m)=>m.id===booking.movieId);
     if(!movie){
         bookingEmitter.emit("bookingFailed","Movie data not found while cancelling booking.");
         return null;
