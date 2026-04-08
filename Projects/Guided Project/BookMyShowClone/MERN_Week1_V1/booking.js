@@ -42,13 +42,13 @@ function generateBookingDetails(movie,showtime,seatCount) {
     return new Promise((resolve)=>{
         setTimeout(()=>{
             const booking={
-                bookingId: 'BOOK-$(Date.now())',
+                bookingId: `BOOK-${Date.now()}`,
                 movieId:movie.id,
                 movieTitle: movie.title,
                 time: showtime.time,
                 seatCount
             };
-            resolve(booing);
+            resolve(booking);
         },300);
     });
 }
