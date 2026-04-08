@@ -1,7 +1,7 @@
 //Middleware to create and/or verify JWT token 
 
 const jwt=require("jsonwebtoken");
-const CustomError=require("../utils/customError")
+const CustomError=require("../utils/customError");
 
 const JWT_SECRET="TumbaSecret";
 
