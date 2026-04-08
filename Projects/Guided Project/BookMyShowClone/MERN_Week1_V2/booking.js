@@ -2,7 +2,7 @@
 
 const bookingEmitter = require("./events");
 let currentBooking = null;
-
+const {appendBookingAsync,appendLogAsync}=require("./fileManager");
 function getCurrentBooking() {
     return currentBooking;
 }
@@ -42,13 +42,13 @@ function generateBookingDetails(movie,showtime,seatCount) {
     return new Promise((resolve)=>{
         setTimeout(()=>{
             const booking={
-                bookingId: 'BOOK-$(Date.now())',
+                bookingId: `BOOK-${Date.now()}`,
                 movieId:movie.id,
                 movieTitle: movie.title,
                 time: showtime.time,
                 seatCount
             };
-            resolve(booing);
+            resolve(booking);
         },300);
     });
 }
@@ -75,6 +75,7 @@ function processBooking(movie,showtime,seatCount){
       })           
       .then(()=>generateBookingDetails(movie,showtime,seatCount))
       .then((booking)=>confirmBooking(booking,showtime))
+      .then((confirmBooking)=>saveBookingToFile(confirmBooking))
       .catch((error)=>{
         bookingEmitter.emit("bookingfailed",error);
         throw error;
@@ -95,6 +96,8 @@ async function processBookingAsync(movie,showtime,seatCount){
 
         const confirmedBooking=await confirmBooking(booking,showtime);
 
+        await saveBookingToFile(confirmBooking);
+
         return confirmedBooking;
     }
     catch(error){
@@ -102,6 +105,16 @@ async function processBookingAsync(movie,showtime,seatCount){
         throw error;
     }
 }
+
+async function saveBookingToFile(booking) {
+    await appendBookingAsync(booking);
+    await appendLogAsync(`Booking saved: ${booking.bookingId} for ${booking.movieTitle}`);
+
+    bookingEmitter.emit("bookingSaved",booking);
+    return booking;
+}
+
+// function processBooking();
 
 module.exports={
     getCurrentBooking,
