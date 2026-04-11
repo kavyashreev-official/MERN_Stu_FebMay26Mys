@@ -17,6 +17,8 @@ async function runFilterDemo(){
         await mongoose.connect("mongodb://localhost:27017/merntraining");
         console.log("MongoDB connected successfully");
 
+        await Product.deleteMany({});
+        
         await Product.create([
             {name: "Book",
             price: 300,
@@ -46,7 +48,7 @@ async function runFilterDemo(){
         // const Product = mongoose.models.Product || mongoose.model("Product",productSchema);
 
         const equalQuery = await Product.find({status:{$eq:"active"}});
-        // console.log("Products which are active:",equalQuery);
+        console.log("Products which are active:",equalQuery);
 
         const greaterQuery = await Product.find({price:{$gt:5000}});
         console.log("Products which are priced more than 5k:",greaterQuery);
@@ -61,6 +63,6 @@ async function runFilterDemo(){
         console.log("Filter demo error:",error.message);
     }
 }
-// runFilterDemo();
+runFilterDemo();
 
 module.exports = Product;
