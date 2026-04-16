@@ -5,6 +5,6 @@ const crypto=require("crypto");
 function generateOTP(length=6){
     return crypto.randomInt(0,10**length)
               .toString()  //convert number to string
-              .padStart(length,'0'); //
+              .padStart(length,'0'); // 000044
 }
 console.log("OTP: ",generateOTP());
