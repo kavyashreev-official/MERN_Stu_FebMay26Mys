@@ -26,5 +26,5 @@ fruits.unshift("Orange");
 console.log(fruits);
 
 //shift-remove from beginning
-fruits.shift();kl 
+fruits.shift();
 console.log(fruits);
