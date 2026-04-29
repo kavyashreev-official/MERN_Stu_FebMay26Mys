@@ -13,8 +13,7 @@ function WelcomeCard(props){
 export function PropBasics(){
     return(
         <>
-            <WelcomeCard name="Rakesh" role="React developer"/>
+            <WelcomeCard name="Kavya" role="React developer"/>
             <WelcomeCard name="Developer" role="UI/UX developer"/>
         </>
     );
-}
