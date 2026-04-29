@@ -17,3 +17,4 @@ export function PropDestructuring(){
         <UserProfile username="Kavya" skill="React" />
         </>
     );
+}
