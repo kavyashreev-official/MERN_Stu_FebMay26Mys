@@ -11,7 +11,7 @@ function UserInfoPanel({children}){
     return <aside className="user-panel">{children}</aside>
 }
 function ProfileAvatar({ user }){
-    return <img src={`/${user.name}.png`} alt={user.name} />
+    return <img src={`/${user.name}.png`} alt={user.name} height={200}/>
 }
 export function CompositionDemo() {
     const user={name:"Kavya"};
