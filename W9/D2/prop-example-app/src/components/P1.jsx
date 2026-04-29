@@ -17,3 +17,4 @@ export function PropBasics(){
             <WelcomeCard name="Developer" role="UI/UX developer"/>
         </>
     );
+}
