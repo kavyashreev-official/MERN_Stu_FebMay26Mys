@@ -1,3 +1,13 @@
+/* div{
+    border: 2px solid black;
+    padding: 20px;
+    margin: 20px;
+    width: 700px;
+    height: 100px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+} */
 .counter {
   font-size: 16px;
   padding: 5px 10px;
