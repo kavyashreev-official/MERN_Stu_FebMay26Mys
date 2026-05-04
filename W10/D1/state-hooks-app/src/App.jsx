@@ -1,10 +1,10 @@
 import './App.css'
-// import {UseStateBasics} from "./components/P1"
+import {UseStateBasics} from "./components/P1"
 
 function App() {
   return(
     <>
-       {/* <UseStateBasics /> */}
+       <UseStateBasics />
     </>
   )
 }
