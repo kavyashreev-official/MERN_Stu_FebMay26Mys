@@ -9,6 +9,7 @@
     // -language settings
     // -app settings
 import { createContext,useContext,useState } from "react";
+import {useDocumentTitle} from "./P2";
 // Basics steps:
 // 1. Create a context
 // 2. Wrap components with Provider
@@ -54,13 +55,15 @@ function Layout(){
         </div>
     )
 }
+
 export function UseContextIntro(){
     // Shared state
     const [theme, setTheme] = useState('light');
-
+    useDocumentTitle('used useContext hook');
     const toggleTheme = () =>{
         setTheme(theme === 'light' ? 'dark' : 'light');
     };
+    
     return(
         <section>
             <h2>useContent Example via theme</h2>
