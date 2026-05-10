@@ -9,7 +9,7 @@
     // -language settings
     // -app settings
 import { createContext,useContext,useState } from "react";
-import {useDocumentTitle} from "./P2";
+// import {useDocumentTitle} from "./P2";
 // Basics steps:
 // 1. Create a context
 // 2. Wrap components with Provider
