@@ -1,0 +1,20 @@
+export default function MovieCard(){
+    // const movie = {
+    //     title: "Inception",
+    //     genre:"Sci-Fi",
+    //     rating:4.8,
+    //     duration: "2h 28m"
+    // };
+
+    return(
+        <div className="movie-card">
+            {/* Destructing props */}
+            <img src={props.poster} alt={props.title} />
+            <h2>{props.title}</h2>
+            <p>Genre: {props.genre}</p>
+            <p>Rating: {props.rating}</p>
+            <p>Duration: {props.duration}</p>
+            <button>Book Now</button>
+        </div>
+    )
+}
