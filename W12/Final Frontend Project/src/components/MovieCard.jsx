@@ -1,4 +1,4 @@
-export default function MovieCard(){
+export default function MovieCard(props){
     // const movie = {
     //     title: "Inception",
     //     genre:"Sci-Fi",
