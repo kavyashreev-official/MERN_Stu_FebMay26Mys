@@ -3,249 +3,255 @@
 
 /*
 =========================================================
-SPRINT 1 – SHARED INFRASTRUCTURE
+SPRINT 2 – AUTH-AWARE NAVBAR
 
 
 TOPICS COVERED:
 
 
-✓ NavLink
-✓ Active Links
-✓ SPA Navigation
+✓ Conditional Rendering
+✓ useAuth
+✓ useNavigate
+✓ Logout
 
 
 WHY THIS COMPONENT?
 
 
-The Navbar appears throughout the
-application.
+Real applications adapt their UI
+based on authentication state.
 
 
-Responsibilities:
+Logged Out
+↓
+Login
+Signup
 
 
-✓ Primary Navigation
-✓ Active Link Highlighting
-✓ Easy Access to Features
+Logged In
+↓
+Bookings
+Logout
 
 
-Real BookMyShow:
-
-
-Movies
-Events
-Sports
-Profile
-
-
-Students immediately understand
-why navigation matters.
+Admin
+↓
+Admin Dashboard
 
 
 =========================================================
 */
 
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+
+
+import { useAuth } from "../hooks/useAuth";
 
 
 export default function Navbar() {
+  const navigate = useNavigate();
 
 
-    return (
+  const {
+    isAuthenticated,
 
 
-        <nav style={styles.nav}>
+    logout,
 
 
-            <h2 style={styles.logo}>
-                BookMyShow
-            </h2>
+    user,
+  } = useAuth();
 
 
-            <div style={styles.links}>
+  function handleLogout() {
+    logout();
 
 
-                <NavLink
-                    to="/"
-                    end
-                    style={getNavStyle}
-                >
-                    Home
-                </NavLink>
+    navigate("/login");
+  }
 
 
-                <NavLink
-                    to="/movies"
-                    style={getNavStyle}
-                >
-                    Movies
-                </NavLink>
+  return (
+    <nav style={styles.nav}>
+      <h2 style={styles.logo}>BookMyShow</h2>
 
 
-                <NavLink
-                    to="/bookings"
-                    style={getNavStyle}
-                >
-                    My Bookings
-                </NavLink>
+      <div style={styles.links}>
+        <NavLink to="/" end style={getNavStyle}>
+          Home
+        </NavLink>
 
 
-                <NavLink
-                    to="/login"
-                    style={getNavStyle}
-                >
-                    Login
-                </NavLink>
+        <NavLink to="/movies" style={getNavStyle}>
+          Movies
+        </NavLink>
 
 
-                <NavLink
-                    to="/signup"
-                    style={getNavStyle}
-                >
-                    Signup
-                </NavLink>
+        {isAuthenticated && (
+          <NavLink to="/bookings" style={getNavStyle}>
+            Bookings
+          </NavLink>
+        )}
 
 
-                <NavLink
-                    to="/admin"
-                    style={getNavStyle}
-                >
-                    Admin
-                </NavLink>
+        {user?.role === "admin" && (
+          <NavLink to="/admin/dashboard" style={getNavStyle}>
+            Admin
+          </NavLink>
+        )}
 
 
-            </div>
+        {!isAuthenticated ? (
+          <>
+            <NavLink to="/login" style={getNavStyle}>
+              Login
+            </NavLink>
 
 
-        </nav>
+            <NavLink to="/signup" style={getNavStyle}>
+              Signup
+            </NavLink>
+          </>
+        ) : (
+          <>
+            <span style={styles.userName}>Hi, {user?.name}</span>
 
 
-    );
-
-
+            <button onClick={handleLogout} style={styles.logoutButton}>
+              Logout
+            </button>
+          </>
+        )}
+      </div>
+    </nav>
+  );
 }
 
 
-/*
-=========================================================
-ACTIVE LINK STYLING
-
-
-NavLink provides:
-
-
-isActive
-
-
-which tells us whether the
-current URL matches.
-
-
-=========================================================
-*/
-
-
 function getNavStyle({ isActive }) {
+  return {
+    textDecoration: "none",
 
 
-    return {
+    color: isActive ? "#d32f2f" : "#333",
 
 
-        textDecoration: "none",
+    fontWeight: isActive ? "bold" : "normal",
 
 
-        color: isActive
-            ? "#d32f2f"
-            : "#333",
+    borderBottom: isActive ? "2px solid #d32f2f" : "none",
 
 
-        fontWeight: isActive
-            ? "bold"
-            : "normal",
-
-
-        borderBottom: isActive
-            ? "2px solid #d32f2f"
-            : "none",
-
-
-        paddingBottom: "4px"
-
-
-    };
-
-
+    paddingBottom: "4px",
+  };
 }
 
 
 const styles = {
+  nav: {
+    display: "flex",
 
 
-    nav: {
+    justifyContent: "space-between",
 
 
-        display: "flex",
+    alignItems: "center",
 
 
-        justifyContent: "space-between",
+    padding: "15px 25px",
 
 
-        alignItems: "center",
+    borderBottom: "1px solid #ddd",
 
 
-        padding: "15px 25px",
+    marginBottom: "20px",
+  },
 
 
-        background: "#fff",
+  logo: {
+    margin: 0,
 
 
-        borderBottom: "1px solid #ddd"
+    color: "#d32f2f",
+  },
 
 
-    },
+  links: {
+    display: "flex",
 
 
-    logo: {
+    gap: "20px",
 
 
-        color: "#d32f2f",
+    alignItems: "center",
+  },
 
 
-        margin: 0
+  userName: {
+    fontWeight: "bold",
+  },
 
 
-    },
+  logoutButton: {
+    cursor: "pointer",
 
 
-    links: {
-
-
-        display: "flex",
-
-
-        gap: "20px"
-
-
-    }
-
-
+    padding: "6px 12px",
+  },
 };
 
 
 /*
 =========================================================
+NAVBAR STATES
+
+
+Logged Out
+
+
+Home
+Movies
+Login
+Signup
+
+
+
+
+Customer
+
+
+Home
+Movies
+Bookings
+Logout
+
+
+
+
+Admin
+
+
+Home
+Movies
+Bookings
+Admin
+Logout
+
+
+=========================================================
+
+
 KEY TAKEAWAYS
 
 
-1. NavLink enables SPA navigation.
+1. UI should reflect authentication state.
 
 
-2. Active links improve UX.
+2. Logout affects the entire app instantly.
 
 
-3. Navigation should remain simple
-   and reusable.
+3. Role-based navigation improves UX.
 
 
 =========================================================
