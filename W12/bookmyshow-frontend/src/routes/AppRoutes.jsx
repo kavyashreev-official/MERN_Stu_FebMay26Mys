@@ -56,11 +56,8 @@ Without this file:
 
 import { lazy, Suspense } from "react";
 
-import {
-    Routes,
-    Route,
-    Navigate
-} from "react-router-dom";
+
+import { Routes, Route, Navigate } from "react-router-dom";
 
 
 /*
@@ -132,14 +129,28 @@ NOT tiny reusable components.
 */
 
 
-const Home = lazy(() =>import("../pages/Home"));
-const Movies = lazy(() =>import("../pages/Movies"));
-const Login = lazy(() =>import("../pages/Login"));
-const Signup = lazy(() =>import("../pages/Signup"));
-const Bookings = lazy(() =>import("../pages/Bookings"));
-const NotFound = lazy(() =>import("../pages/NotFound"));
-const Dashboard = lazy(() =>import("../pages/admin/Dashboard"));
-const MovieManagement = lazy(() =>import("../pages/admin/MovieManagement"));
+const Home = lazy(() => import("../pages/Home"));
+
+
+const Movies = lazy(() => import("../pages/Movies"));
+
+
+const Login = lazy(() => import("../pages/Login"));
+
+
+const Signup = lazy(() => import("../pages/Signup"));
+
+
+const Bookings = lazy(() => import("../pages/Bookings"));
+
+
+const NotFound = lazy(() => import("../pages/NotFound"));
+
+
+const Dashboard = lazy(() => import("../pages/admin/Dashboard"));
+
+
+const MovieManagement = lazy(() => import("../pages/admin/MovieManagement"));
 
 
 /*
@@ -185,27 +196,23 @@ FALLBACK
 
 
 export default function AppRoutes() {
-    return (
+  return (
+    /*
+    =====================================================
+    SUSPENSE
 
 
-        /*
-        =====================================================
-        SUSPENSE
-    
-    
-        Displays fallback UI while lazy
-        components are being downloaded.
-    
-    
-        =====================================================
-        */
+    Displays fallback UI while lazy
+    components are being downloaded.
 
 
-        <Suspense
-            fallback={<LoadingSpinner />}
-        >
-            <Routes>
-                {/*
+    =====================================================
+    */
+
+
+    <Suspense fallback={<LoadingSpinner />}>
+      <Routes>
+        {/*
         =================================================
         PUBLIC ROUTES
 
@@ -219,26 +226,21 @@ export default function AppRoutes() {
         */}
 
 
-                <Route element={<PublicLayout />}>
-                    <Route
-                        path="/"
-                        element={<Home />}
-                    />
-                    <Route
-                        path="/movies"
-                        element={<Movies />}
-                    />
-                    <Route
-                        path="/login"
-                        element={<Login />}
-                    />
-                    <Route
-                        path="/signup"
-                        element={<Signup />}
-                    />
-                </Route>
+        <Route element={<PublicLayout />}>
+          <Route path="/" element={<Home />} />
 
-                {/*
+
+          <Route path="/movies" element={<Movies />} />
+
+
+          <Route path="/login" element={<Login />} />
+
+
+          <Route path="/signup" element={<Signup />} />
+        </Route>
+
+
+        {/*
         =================================================
         USER ROUTES
 
@@ -252,23 +254,16 @@ export default function AppRoutes() {
 
         =================================================
         */}
-
-
-                <Route
-                    element={
-                        <ProtectedRoute>
-                            <Bookings />
-                        </ProtectedRoute>
-                    }
-                >
-                    <Route
-                        path="/bookings"
-                        element={<Bookings />}
-                    />
-                </Route>
-
-
-                {/*
+	  
+        <Route
+          element={
+            <ProtectedRoute>
+              <Bookings />
+            </ProtectedRoute>
+          }
+        />
+         
+        {/*
         =================================================
         ADMIN ROUTES
 
@@ -284,19 +279,15 @@ export default function AppRoutes() {
         */}
 
 
-                <Route
-                    path="/admin"
-                    element={
-                        <ProtectedRoute
-                            requiredRole="admin"
-                        >
-                            <AdminLayout />
-                        </ProtectedRoute>
-                    }
-                >
-
-
-                    {/*
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute roles={["admin"]}>
+                <AdminLayout />
+              </ProtectedRoute>
+            }
+          >
+          {/*
           ===============================================
           INDEX ROUTE
 
@@ -310,46 +301,17 @@ export default function AppRoutes() {
           */}
 
 
-                    <Route
+          <Route index element={<Dashboard />} />
 
 
-                        index
+          <Route path="dashboard" element={<Dashboard />} />
 
 
-                        element={<Dashboard />}
+          <Route path="movies" element={<MovieManagement />} />
+        </Route>
 
 
-                    />
-
-
-                    <Route
-
-
-                        path="dashboard"
-
-
-                        element={<Dashboard />}
-
-
-                    />
-
-
-                    <Route
-
-
-                        path="movies"
-
-
-                        element={<MovieManagement />}
-
-
-                    />
-
-
-                </Route>
-
-
-                {/*
+        {/*
         =================================================
         404 ROUTE
 
@@ -361,27 +323,10 @@ export default function AppRoutes() {
         */}
 
 
-                <Route
-
-
-                    path="*"
-
-
-                    element={<NotFound />}
-
-
-                />
-
-
-            </Routes>
-
-
-        </Suspense>
-
-
-    );
-
-
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Suspense>
+  );
 }
 
 
